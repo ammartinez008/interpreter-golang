@@ -17,7 +17,7 @@ const (
 	INT   = "INT"   // int values
 
 	//Operators
-	ASSIGN = "=" // assign value
+	ASSIGN = "=" // ASSIGN value
 	PLUS   = "+" // addition
 
 	//Delimiters
@@ -32,3 +32,8 @@ const (
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
 )
+
+var keywords = map[string]TokenType{
+	"fn":  FUNCTION,
+	"let": LET,
+}
