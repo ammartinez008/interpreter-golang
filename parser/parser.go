@@ -18,14 +18,14 @@ func New(l *lexer.Lexer) *Parser {
 
 	//Read first token
 	// set peek token to next token
-	curToken = l.NextToken
-	peekToken = l.NextToken
+	p.nextToken()
+	p.nextToken()
 	return p
 }
 
 func (p *Parser) nextToken() {
-	curToken = peekToken
-	peekToken = p.l.NextToken
+	p.curToken = p.peekToken
+	p.peekToken = p.l.NextToken()
 }
 
 func (p *Parser) ParseProgram() *ast.Program {
