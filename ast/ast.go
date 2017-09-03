@@ -33,7 +33,7 @@ type LetStatement struct {
 	Value Expression
 }
 
-func (ls *LetStatement) statement() {}
+func (ls *LetStatement) statementNode() {}
 func (ls *LetStatement) TokenLiteral() string {
 	return ls.Token.Literal
 }
