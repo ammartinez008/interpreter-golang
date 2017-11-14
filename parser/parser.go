@@ -3,9 +3,9 @@ package parser
 import (
 	"fmt"
 
-	"github.com/monkey_lang/ast"
-	"github.com/monkey_lang/lexer"
-	"github.com/monkey_lang/token"
+	"github.com/interpreter-golang/ast"
+	"github.com/interpreter-golang/lexer"
+	"github.com/interpreter-golang/token"
 )
 
 type Parser struct {
