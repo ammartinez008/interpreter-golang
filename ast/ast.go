@@ -3,7 +3,7 @@ package ast
 import (
 	"bytes"
 
-	"github.com/interpreter-golang/token"
+	"github.com/ammartinez008/interpreter-golang/token"
 )
 
 type Node interface {

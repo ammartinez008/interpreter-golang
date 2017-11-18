@@ -3,9 +3,14 @@ package parser
 import (
 	"fmt"
 
-	"github.com/interpreter-golang/ast"
-	"github.com/interpreter-golang/lexer"
-	"github.com/interpreter-golang/token"
+	"github.com/ammartinez008/interpreter-golang/ast"
+	"github.com/ammartinez008/interpreter-golang/lexer"
+	"github.com/ammartinez008/interpreter-golang/token"
+)
+
+type (
+	prefixParseFn func() ast.Expression
+	infixParseFn  func(ast.Expression) ast.Expression
 )
 
 type Parser struct {
@@ -14,6 +19,9 @@ type Parser struct {
 
 	curToken  token.Token
 	peekToken token.Token
+
+	prefixParseFns map[token.TokenType]prefixParseFn
+	infixParseFns  map[token.TokenType]infixParseFn
 }
 
 func New(l *lexer.Lexer) *Parser {
@@ -112,4 +120,12 @@ func (p *Parser) expectPeek(t token.TokenType) bool {
 
 	p.peekError(t)
 	return false
+}
+
+func (p *Parser) registerPrefix(tokenType token.TokenType, fn prefixParseFn) {
+	p.prefixParseFns[tokenType] = fn
+}
+
+func (p *Parser) registerInfix(tokenType token.TokenType, fn infixParseFn) {
+	p.infixParseFns[tokenType] = fn
 }

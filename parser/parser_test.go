@@ -3,8 +3,8 @@ package parser
 import (
 	"testing"
 
-	"github.com/interpreter-golang/ast"
-	"github.com/interpreter-golang/lexer"
+	"github.com/ammartinez008/interpreter-golang/ast"
+	"github.com/ammartinez008/interpreter-golang/lexer"
 )
 
 func TestLetStatement(t *testing.T) {
@@ -100,4 +100,32 @@ func TestReturnStatement(t *testing.T) {
 			t.Errorf("returnStatement TokenLiteral not return, got %q", returnStmt.TokenLiteral())
 		}
 	}
+}
+
+func TestIdentifierExpression(t *testing.T) {
+	input := "foobar;"
+
+	l := lexer.New(input)
+	p := New(l)
+	program := p.ParseProgram()
+	checkParserErrors(t, p)
+
+	if len(program.Statements) != 1 {
+		t.Fatalf("program doesnt have enough statements: %d", len(program.Statements))
+	}
+	stmt, ok := program.Statements[0].(*ast.ExpressionStatement)
+	if !ok {
+		t.Fatalf("program.Statements[0] is not ast.ExpressionStatement. Got back %T",
+			program.Statements[0])
+	}
+
+	ident, ok := stmt.Expression.(*ast.Identifier)
+	if !ok {
+		t.Fatalf("exp not *ast.Identifier. got back %T", stmt.Expression)
+	}
+
+	if ident.Value != "foobar" {
+		t.Errorf("ident.Value not %s. got %s", "foobar", ident.TokenLiteral())
+	}
+
 }

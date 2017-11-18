@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/interpreter-golang/lexer"
-	"github.com/interpreter-golang/token"
+	"github.com/ammartinez008/interpreter-golang/lexer"
+	"github.com/ammartinez008/interpreter-golang/token"
 )
 
 const PROMPT = ">> "
