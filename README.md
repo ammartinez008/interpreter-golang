@@ -9,7 +9,7 @@ The basic idea is to follow Balls' book and then build extra features on top
 ## Installing / Getting started
 todo
 
-Here you should say what actually happens when you execute the code above.
+
 
 ## Developing
 
